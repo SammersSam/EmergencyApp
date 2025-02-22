@@ -1,8 +1,7 @@
-package com.example.emergencyapp.model.dto;
+package com.example.emergencyapp.emergencycall.model.dto;
 
-import com.example.emergencyapp.model.Caller;
-import com.example.emergencyapp.model.EmergencyType;
-import lombok.Builder;
+import com.example.emergencyapp.emergencycall.model.Caller;
+import com.example.emergencyapp.emergencycall.model.EmergencyType;
 import lombok.Getter;
 import lombok.Setter;
 

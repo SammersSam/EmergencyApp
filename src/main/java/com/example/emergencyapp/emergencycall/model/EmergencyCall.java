@@ -1,4 +1,4 @@
-package com.example.emergencyapp.model;
+package com.example.emergencyapp.emergencycall.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -22,10 +22,13 @@ public class EmergencyCall implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
+    @Embedded
     private Caller callerDetails;
     private String location;
+    @Enumerated(EnumType.STRING)
     private EmergencyType emergencyType;
+    @Enumerated(EnumType.STRING)
+    private SeverityType severityType;
     private LocalDateTime time;
 
     @Override
@@ -33,14 +36,12 @@ public class EmergencyCall implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EmergencyCall that = (EmergencyCall) o;
-        return Objects.equals(id, that.id) && Objects.equals(callerDetails, that.callerDetails) &&
-                Objects.equals(location, that.location) && emergencyType == that.emergencyType &&
-                Objects.equals(time, that.time);
+        return Objects.equals(id, that.id) && Objects.equals(callerDetails, that.callerDetails) && Objects.equals(location, that.location) && emergencyType == that.emergencyType && severityType == that.severityType && Objects.equals(time, that.time);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, callerDetails, location, emergencyType, time);
+        return Objects.hash(id, callerDetails, location, emergencyType, severityType, time);
     }
 
     @Override
@@ -50,6 +51,7 @@ public class EmergencyCall implements Serializable {
                 ", callerDetails=" + callerDetails +
                 ", location='" + location + '\'' +
                 ", emergencyType=" + emergencyType +
+                ", severityType=" + severityType +
                 ", time=" + time +
                 '}';
     }
