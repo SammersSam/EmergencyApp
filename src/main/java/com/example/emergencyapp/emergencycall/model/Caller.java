@@ -1,9 +1,6 @@
-package com.example.emergencyapp.model;
+package com.example.emergencyapp.emergencycall.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,14 +13,14 @@ import java.util.Objects;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@Embeddable
 public class Caller implements Serializable {
 
-    static final long serialVersionUID = 1L;
+//    static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long id;
     private String name;
     private String lastname;
     private String phoneNumber;
@@ -33,19 +30,18 @@ public class Caller implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Caller caller = (Caller) o;
-        return Objects.equals(id, caller.id) && Objects.equals(name, caller.name) &&
+        return Objects.equals(name, caller.name) &&
                 Objects.equals(lastname, caller.lastname) && Objects.equals(phoneNumber, caller.phoneNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, lastname, phoneNumber);
+        return Objects.hash( name, lastname, phoneNumber);
     }
 
     @Override
     public String toString() {
         return "Caller{" +
-                "id=" + id +
                 ", name='" + name + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
