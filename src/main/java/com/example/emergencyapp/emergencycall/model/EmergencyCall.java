@@ -1,5 +1,6 @@
 package com.example.emergencyapp.emergencycall.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,18 +31,23 @@ public class EmergencyCall implements Serializable {
     @Enumerated(EnumType.STRING)
     private SeverityType severityType;
     private LocalDateTime time;
+    @JsonIgnore
+    private Boolean dispatched;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EmergencyCall that = (EmergencyCall) o;
-        return Objects.equals(id, that.id) && Objects.equals(callerDetails, that.callerDetails) && Objects.equals(location, that.location) && emergencyType == that.emergencyType && severityType == that.severityType && Objects.equals(time, that.time);
+        return Objects.equals(id, that.id) && Objects.equals(callerDetails, that.callerDetails) &&
+                Objects.equals(location, that.location) && emergencyType == that.emergencyType &&
+                severityType == that.severityType && Objects.equals(time, that.time) &&
+                Objects.equals(dispatched, that.dispatched);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, callerDetails, location, emergencyType, severityType, time);
+        return Objects.hash(id, callerDetails, location, emergencyType, severityType, time, dispatched);
     }
 
     @Override
@@ -53,6 +59,7 @@ public class EmergencyCall implements Serializable {
                 ", emergencyType=" + emergencyType +
                 ", severityType=" + severityType +
                 ", time=" + time +
+                ", dispatched=" + dispatched +
                 '}';
     }
 }

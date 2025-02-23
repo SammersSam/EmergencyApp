@@ -18,6 +18,7 @@ public class EmergencyCallService {
     private final EmergencyCallRepository repo;
 
     public EmergencyCall save(EmergencyCall emergencyCall){
+        emergencyCall.setDispatched(false);
         return repo.save(emergencyCall);
     }
 
