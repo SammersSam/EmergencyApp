@@ -7,7 +7,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
-public interface EmergencyCallRepository extends JpaRepository<EmergencyCall,Long>, JpaSpecificationExecutor<EmergencyCall> {
+public interface EmergencyCallRepository extends JpaRepository<EmergencyCall,Long>,
+        JpaSpecificationExecutor<EmergencyCall> {
 
-     Page<EmergencyCall> findBySpecificCriteria(Specification<EmergencyCall> spec, Pageable pageable);
 }

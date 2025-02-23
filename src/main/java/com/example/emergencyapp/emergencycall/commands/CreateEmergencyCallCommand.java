@@ -1,6 +1,7 @@
 package com.example.emergencyapp.emergencycall.commands;
 
 import com.example.emergencyapp.emergencycall.model.EmergencyType;
+import com.example.emergencyapp.emergencycall.model.SeverityType;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -12,11 +13,14 @@ import java.time.LocalDateTime;
 @Setter
 public class CreateEmergencyCallCommand {
 
-    private Long callerId;
+
+    private CreateCallerDetailsCommand callerDetails;
     @NotBlank
     private String location;
     @NotNull
     private EmergencyType emergencyType;
+    @NotNull
+    private SeverityType severityType;
     @NotNull
     private LocalDateTime time;
 }
