@@ -10,6 +10,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +33,7 @@ public class EmergencyCallController {
         EmergencyCall emergencyCall = mapper.map(command, EmergencyCall.class);
         EmergencyCall savedCall = service.save(emergencyCall);
         EmergencyCallDto callDto = mapper.map(savedCall, EmergencyCallDto.class);
-        return ResponseEntity.ok(callDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(callDto);
     }
 
     @GetMapping

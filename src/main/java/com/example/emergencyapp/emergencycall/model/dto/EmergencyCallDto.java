@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class EmergencyCallDto {
-    private Caller callerDetails;
+    private CallerDto callerDetails;
     private String location;
     private EmergencyType emergencyType;
     private LocalDateTime time;

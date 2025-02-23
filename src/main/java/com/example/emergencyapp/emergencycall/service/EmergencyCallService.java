@@ -23,6 +23,6 @@ public class EmergencyCallService {
 
     public Page<EmergencyCall> getByCriteria(Map<String,String> criteria, Pageable pageable){
         Specification<EmergencyCall> emergencyCallSpecification = DynamicSpecificationEmergencyCall.byFilters(criteria);
-        return  repo.findBySpecificCriteria(emergencyCallSpecification,pageable);
+        return  repo.findAll(emergencyCallSpecification,pageable);
     }
 }

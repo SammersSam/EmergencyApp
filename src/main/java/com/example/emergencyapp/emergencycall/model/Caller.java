@@ -16,11 +16,6 @@ import java.util.Objects;
 @Embeddable
 public class Caller implements Serializable {
 
-//    static final long serialVersionUID = 1L;
-
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Long id;
     private String name;
     private String lastname;
     private String phoneNumber;
