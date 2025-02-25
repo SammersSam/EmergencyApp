@@ -11,15 +11,15 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class DispatchService {
+public class EmergencyCallScheduler {
 
     private final EmergencyCallRepository callRepo;
     private final EmergencyResourcesService resourcesService;
 
-    @Scheduled(fixedDelayString = "30000")
+    @Scheduled(fixedDelayString = "100000")
     public void getCallsToProcess() {
         List<EmergencyCall> calls = callRepo.
-                findAllByDispatchedFalseOrderBySeverityTypeDescTimeAsc(Pageable.ofSize(20));
+                findAllByDispatchedFalseOrderBySeverityTypeDescTimeAsc(Pageable.ofSize(2));
         for (EmergencyCall call : calls) {
             resourcesService.processCall(call.getId());
         }
