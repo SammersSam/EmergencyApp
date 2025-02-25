@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public class LocationProcessor {
 
-    public static EmergencyResource findClosestResource(String emergencyLocation, List<EmergencyResource> resources) {
+    public static Optional<EmergencyResource> findClosestResource(String emergencyLocation, List<EmergencyResource> resources) {
         double[] emergencyCoords = parseLocation(emergencyLocation);
         EmergencyResource closest = null;
         double minDistance = Double.MAX_VALUE;
@@ -21,7 +21,7 @@ public class LocationProcessor {
                 closest = resource;
             }
         }
-        return closest;
+        return Optional.ofNullable(closest);
     }
 
 

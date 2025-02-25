@@ -12,6 +12,6 @@ public interface EmergencyResourcesRepository extends JpaRepository<EmergencyRes
 
     @Query("SELECT e FROM EmergencyResource e " +
             "WHERE e.resourcesStatusType = 'AVAILABLE' AND  e.type = :type")
-    Optional<List<EmergencyResource>> findByResourcesStatusTypeAndLocation(
-            ResourcesType type, String location);
+    Optional<List<EmergencyResource>> findByResourcesStatusType(
+            ResourcesType type);
 }
