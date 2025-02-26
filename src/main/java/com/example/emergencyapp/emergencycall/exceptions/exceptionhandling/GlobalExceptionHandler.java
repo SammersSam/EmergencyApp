@@ -13,18 +13,11 @@ import java.util.List;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(NotAvailableResourcesExceptions.class)
+    @ExceptionHandler({NotAvailableResourcesExceptions.class,IncorrectStrategyException.class})
     public ResponseEntity<ExceptionResponseDto> getNotAvailableResourcesExceptions(NotAvailableResourcesExceptions e){
         ExceptionResponseDto exceptionResponseDto = new ExceptionResponseDto(
                 List.of(e.getMessage()),"NOT_FOUND", LocalDateTime.now());
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exceptionResponseDto);
-    }
-    @ExceptionHandler(IncorrectStrategyException.class)
-    public ResponseEntity<ExceptionResponseDto> getIncorrectStrategyException(IncorrectStrategyException e){
-        ExceptionResponseDto exceptionResponseDto = new ExceptionResponseDto(
-                List.of(e.getMessage()),"NOT_ACCEPTABLE", LocalDateTime.now());
-
-        return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(exceptionResponseDto);
     }
 }

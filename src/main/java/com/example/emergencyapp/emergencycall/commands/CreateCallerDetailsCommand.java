@@ -8,7 +8,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 public class CreateCallerDetailsCommand {
 
     @NotBlank
@@ -17,4 +16,13 @@ public class CreateCallerDetailsCommand {
     private String lastName;
     @NotBlank
     private String phoneNumber;
+
+    public CreateCallerDetailsCommand() {
+    }
+
+    public CreateCallerDetailsCommand(@NotBlank String name, @NotBlank String lastName, @NotBlank String phoneNumber) {
+        this.name = name;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+    }
 }

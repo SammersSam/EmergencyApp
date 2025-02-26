@@ -30,6 +30,18 @@ public class EmergencyResource implements Serializable {
     @JoinColumn(name = "call_id")
     private EmergencyCall emergencyCall;
 
+    public EmergencyResource(String location) {
+        this.location = location;
+    }
+
+    public EmergencyResource(ResourcesType type, ResourcesStatusType resourcesStatusType,
+                             String location, EmergencyCall emergencyCall) {
+        this.type = type;
+        this.resourcesStatusType = resourcesStatusType;
+        this.location = location;
+        this.emergencyCall = emergencyCall;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

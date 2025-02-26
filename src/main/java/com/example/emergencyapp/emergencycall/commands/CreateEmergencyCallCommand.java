@@ -25,4 +25,7 @@ public class CreateEmergencyCallCommand {
     private SeverityType severityType;
     @NotNull
     private LocalDateTime time;
+
+    public CreateEmergencyCallCommand() {
+    }
 }

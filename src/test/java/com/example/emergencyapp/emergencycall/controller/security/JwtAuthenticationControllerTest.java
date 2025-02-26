@@ -1,5 +1,9 @@
-package com.example.emergencyapp.emergencycall.security;
+package com.example.emergencyapp.emergencycall.controller.security;
 
+import com.example.emergencyapp.security.JwtRequest;
+import com.example.emergencyapp.security.Role;
+import com.example.emergencyapp.security.User;
+import com.example.emergencyapp.security.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -53,7 +57,7 @@ class JwtAuthenticationControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.jwtToken").isNotEmpty());
         //then
-        verify(userRepository, times(2)).findByUserName(request.getUsername());
+        verify(userRepository, times(2)).findByUserName(request.getUserName());
     }
 
     @Test
@@ -70,7 +74,7 @@ class JwtAuthenticationControllerTest {
                 .andExpect(status().isUnauthorized());
 
         //then
-        verify(userRepository, times(1)).findByUserName(request.getUsername());
+        verify(userRepository, times(1)).findByUserName(request.getUserName());
     }
 
 

@@ -1,23 +1,23 @@
-package com.example.emergencyapp.emergencycall.security;
+package com.example.emergencyapp.security;
 
 import java.io.Serializable;
 
 public class JwtRequest implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private String username;
+    private String userName;
     private String password;
 
     public JwtRequest() {
     }
 
     public JwtRequest(String username, String password) {
-        this.username = username;
+        this.userName = username;
         this.password = password;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
     public String getPassword() {
