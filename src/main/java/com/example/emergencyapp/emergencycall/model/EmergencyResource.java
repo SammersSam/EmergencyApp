@@ -26,27 +26,32 @@ public class EmergencyResource implements Serializable {
     @Enumerated(EnumType.STRING)
     private ResourcesStatusType resourcesStatusType;
     private String location;
+    @OneToOne
+    @JoinColumn(name = "call_id")
+    private EmergencyCall emergencyCall;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EmergencyResource that = (EmergencyResource) o;
-        return Objects.equals(id, that.id) && type == that.type && resourcesStatusType == that.resourcesStatusType && Objects.equals(location, that.location);
+        return Objects.equals(id, that.id) && type == that.type && resourcesStatusType == that.resourcesStatusType &&
+                Objects.equals(location, that.location) && Objects.equals(emergencyCall, that.emergencyCall);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, type, resourcesStatusType, location);
+        return Objects.hash(id, type, resourcesStatusType, location, emergencyCall);
     }
 
     @Override
     public String toString() {
-        return "EmergencyResources{" +
+        return "EmergencyResource{" +
                 "id=" + id +
                 ", type=" + type +
                 ", resourcesStatusType=" + resourcesStatusType +
                 ", location='" + location + '\'' +
+                ", emergencyCall=" + emergencyCall +
                 '}';
     }
 }

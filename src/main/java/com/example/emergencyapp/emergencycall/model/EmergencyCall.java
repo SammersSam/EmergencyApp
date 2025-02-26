@@ -31,8 +31,15 @@ public class EmergencyCall implements Serializable {
     @Enumerated(EnumType.STRING)
     private SeverityType severityType;
     private LocalDateTime time;
-    @JsonIgnore
-    private Boolean dispatched;
+
+    public EmergencyCall(Caller callerDetails, String location, EmergencyType emergencyType,
+                         SeverityType severityType, LocalDateTime time) {
+        this.callerDetails = callerDetails;
+        this.location = location;
+        this.emergencyType = emergencyType;
+        this.severityType = severityType;
+        this.time = time;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -41,13 +48,12 @@ public class EmergencyCall implements Serializable {
         EmergencyCall that = (EmergencyCall) o;
         return Objects.equals(id, that.id) && Objects.equals(callerDetails, that.callerDetails) &&
                 Objects.equals(location, that.location) && emergencyType == that.emergencyType &&
-                severityType == that.severityType && Objects.equals(time, that.time) &&
-                Objects.equals(dispatched, that.dispatched);
+                severityType == that.severityType && Objects.equals(time, that.time);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, callerDetails, location, emergencyType, severityType, time, dispatched);
+        return Objects.hash(id, callerDetails, location, emergencyType, severityType, time);
     }
 
     @Override
@@ -59,7 +65,6 @@ public class EmergencyCall implements Serializable {
                 ", emergencyType=" + emergencyType +
                 ", severityType=" + severityType +
                 ", time=" + time +
-                ", dispatched=" + dispatched +
                 '}';
     }
 }

@@ -1,5 +1,6 @@
 package com.example.emergencyapp.utils;
 
+import com.example.emergencyapp.emergencycall.exceptions.IncorrectStrategyException;
 import com.example.emergencyapp.emergencycall.model.EmergencyType;
 import com.example.emergencyapp.emergencycall.model.ResourcesType;
 import com.example.emergencyapp.utils.IEmergencyResourcesStrategy;
@@ -19,7 +20,7 @@ public class EmergencyStrategyService {
                 .filter(s -> s.sup(type))
                 .findFirst()
                 .map(IEmergencyResourcesStrategy::getResourcesType)
-                .orElseThrow(() -> new IllegalArgumentException("Wrong resources!"));
+                .orElseThrow(() -> new IncorrectStrategyException("Wrong strategy!"));
     }
 
 }
