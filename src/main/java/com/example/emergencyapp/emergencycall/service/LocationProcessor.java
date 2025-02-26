@@ -3,11 +3,10 @@ package com.example.emergencyapp.emergencycall.service;
 import com.example.emergencyapp.emergencycall.model.EmergencyResource;
 
 import java.util.List;
-import java.util.Optional;
 
 public class LocationProcessor {
 
-    public static Optional<EmergencyResource> findClosestResource(String emergencyLocation, List<EmergencyResource> resources) {
+    public static EmergencyResource findClosestResource(String emergencyLocation, List<EmergencyResource> resources) {
         double[] emergencyCoords = parseLocation(emergencyLocation);
         EmergencyResource closest = null;
         double minDistance = Double.MAX_VALUE;
@@ -21,7 +20,7 @@ public class LocationProcessor {
                 closest = resource;
             }
         }
-        return Optional.ofNullable(closest);
+        return (closest);
     }
 
 

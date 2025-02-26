@@ -1,4 +1,4 @@
-package com.example.emergencyapp.emergencycall.exceptions;
+package com.example.emergencyapp.emergencycall.exceptions.exceptionhandling;
 
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.AllArgsConstructor;

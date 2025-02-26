@@ -1,5 +1,7 @@
-package com.example.emergencyapp.emergencycall.exceptions;
+package com.example.emergencyapp.emergencycall.exceptions.exceptionhandling;
 
+import com.example.emergencyapp.emergencycall.exceptions.IncorrectStrategyException;
+import com.example.emergencyapp.emergencycall.exceptions.NotAvailableResourcesExceptions;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -17,5 +19,12 @@ public class GlobalExceptionHandler {
                 List.of(e.getMessage()),"NOT_FOUND", LocalDateTime.now());
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exceptionResponseDto);
+    }
+    @ExceptionHandler(IncorrectStrategyException.class)
+    public ResponseEntity<ExceptionResponseDto> getIncorrectStrategyException(IncorrectStrategyException e){
+        ExceptionResponseDto exceptionResponseDto = new ExceptionResponseDto(
+                List.of(e.getMessage()),"NOT_ACCEPTABLE", LocalDateTime.now());
+
+        return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(exceptionResponseDto);
     }
 }

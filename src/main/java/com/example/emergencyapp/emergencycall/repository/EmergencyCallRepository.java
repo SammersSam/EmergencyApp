@@ -14,11 +14,8 @@ import java.util.Optional;
 
 public interface EmergencyCallRepository extends JpaRepository<EmergencyCall,Long>,
         JpaSpecificationExecutor<EmergencyCall> {
-
-    List<EmergencyCall> findAllByDispatchedFalseOrderBySeverityTypeDescTimeAsc(Pageable pageable);
-
-    @Lock(LockModeType.PESSIMISTIC_WRITE)
-    @Query("SELECT ec FROM EmergencyCall ec WHERE ec.id = :id")
-    EmergencyCall findByIdToUpdate(@Param("id") Long id);
+    @Query("SELECT c FROM EmergencyCall c LEFT JOIN EmergencyResource r ON r.emergencyCall = c" +
+            " WHERE r IS NULL ORDER BY c.severityType DESC, c.time ASC ")
+    List<EmergencyCall> findAllOrderBySeverityTypeDescTimeAsc(Pageable pageable);
 
 }

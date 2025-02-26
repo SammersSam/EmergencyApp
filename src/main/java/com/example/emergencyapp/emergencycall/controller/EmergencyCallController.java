@@ -11,7 +11,6 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +22,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -42,8 +43,8 @@ public class EmergencyCallController {
             description = "Creates a new emergency call with the provided details and returns the created call information."
     )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Emergency call created successfully"),
-            @ApiResponse(responseCode = "400", description = "Invalid request data"),
+            @ApiResponse(responseCode = "201", description = "Created"),
+            @ApiResponse(responseCode = "400", description = "Bad request"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
     @PostMapping
@@ -58,15 +59,15 @@ public class EmergencyCallController {
             summary = "Search emergency calls by criteria",
             description = "Search emergency calls by various criteria. For range-based attributes, " +
                     "include two keys: one ending with 'From' and one ending with 'To'. ")
-    @RequestBody(
+    @Parameter(
             description = "A JSON object containing search criteria. For range queries, use keys ending in 'From' and 'To'. " +
                     "Example: { \"timeFrom\": \"2023-01-01T00:00:00\", \"timeTo\": \"2023-01-31T23:59:59\", " +
-                    "\"location\": \"37.774929,-122.419418\", \"emergencyType\": \"FIRE\" }")
+                    "\"location\": \"37.774929,-122.419418\", \"emergencyType\": \"FIRE\", \"callerDetails.name\": \"John\" }")
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
                     description = "Returns a paginated list of emergency calls. If no data exists, an empty page is returned."),
-            @ApiResponse(responseCode = "400", description = "Invalid search criteria provided"),
+            @ApiResponse(responseCode = "400", description = "Bad request"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
     @GetMapping

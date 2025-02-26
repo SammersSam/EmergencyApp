@@ -2,9 +2,7 @@ package com.example.emergencyapp.emergencycall.service;
 
 import com.example.emergencyapp.emergencycall.model.EmergencyCall;
 import com.example.emergencyapp.emergencycall.model.ResourcesType;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.Root;
-import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.*;
 import org.springframework.data.jpa.domain.Specification;
 
 import java.util.ArrayList;
@@ -40,14 +38,24 @@ public class DynamicSpecificationEmergencyCall {
     private static void handleRangeCriteria(Root<EmergencyCall> root, CriteriaBuilder
             builder, List<Predicate> predicates,
                                            String field, String fromValue, String toValue) {
-        predicates.add(builder.between(root.get(field), fromValue, toValue));
+        Path<String> path = getPath(root, field);
+        predicates.add(builder.between(path, fromValue, toValue));
     }
-
 
     private static void handleStringCriteria(Root<EmergencyCall> root, CriteriaBuilder
             builder, List<Predicate> predicates,
                                             String key, String value) {
-        predicates.add(builder.like(builder.lower(root.get(key)), "%" + value.toLowerCase() + "%"));
+        Path<String> path = getPath(root, key);
+        predicates.add(builder.like(builder.lower(path), "%" + value.toLowerCase() + "%"));
+    }
+
+    private static <T> Path<T> getPath(From<?, ?> root, String key) {
+        String[] parts = key.split("\\.");
+        Path<T> path = root.get(parts[0]);
+        for (int i = 1; i < parts.length; i++) {
+            path = path.get(parts[i]);
+        }
+        return path;
     }
 
 

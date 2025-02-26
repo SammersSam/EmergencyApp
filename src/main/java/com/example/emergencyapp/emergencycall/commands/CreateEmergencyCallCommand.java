@@ -4,10 +4,12 @@ import com.example.emergencyapp.emergencycall.model.EmergencyType;
 import com.example.emergencyapp.emergencycall.model.SeverityType;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+
 
 @Getter
 @Setter
