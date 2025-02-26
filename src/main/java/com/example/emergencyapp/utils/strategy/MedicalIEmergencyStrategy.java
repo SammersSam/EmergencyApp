@@ -1,8 +1,8 @@
-package com.example.emergencyapp.utils;
+package com.example.emergencyapp.utils.strategy;
 
 import com.example.emergencyapp.emergencycall.model.EmergencyType;
 import com.example.emergencyapp.emergencycall.model.ResourcesType;
-import com.example.emergencyapp.utils.IEmergencyResourcesStrategy;
+import com.example.emergencyapp.utils.strategy.IEmergencyResourcesStrategy;
 import org.springframework.stereotype.Service;
 
 @Service

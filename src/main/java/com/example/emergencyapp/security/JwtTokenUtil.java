@@ -1,4 +1,4 @@
-package com.example.emergencyapp.emergencycall.security;
+package com.example.emergencyapp.security;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
@@ -62,10 +62,7 @@ public class JwtTokenUtil {
 
     }
 
-//    private Key getSigningKey() {
-//        byte[] keyBytes = Decoders.BASE64.decode(secret);
-//        return Keys.hmacShaKeyFor(keyBytes);
-//    }
+
     private Key getSigningKey() {
         byte[] keyBytes = this.secret.getBytes(StandardCharsets.UTF_8);
         return Keys.hmacShaKeyFor(keyBytes);

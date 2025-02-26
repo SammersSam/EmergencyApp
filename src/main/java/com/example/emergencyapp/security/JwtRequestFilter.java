@@ -1,4 +1,4 @@
-package com.example.emergencyapp.emergencycall.security;
+package com.example.emergencyapp.security;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;

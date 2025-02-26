@@ -1,4 +1,4 @@
-package com.example.emergencyapp.emergencycall.security;
+package com.example.emergencyapp.security;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

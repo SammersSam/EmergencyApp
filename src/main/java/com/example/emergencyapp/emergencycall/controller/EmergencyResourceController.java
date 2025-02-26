@@ -38,7 +38,8 @@ public class EmergencyResourceController {
     })
     @Parameter(description = "Number of resources to fetch", required = true, example = "10")
     @GetMapping
-    public ResponseEntity<List<EmergencyResourceDto>> getAssignedResources(@RequestParam int amountOfResources) {
+    public ResponseEntity<List<EmergencyResourceDto>> getAssignedResources(
+            @RequestParam("amountOfResources") int amountOfResources) {
         return ResponseEntity.ok(resourcesService.getAssignedResources(amountOfResources)
                 .stream()
                 .map(x -> mapper.map(x, EmergencyResourceDto.class))

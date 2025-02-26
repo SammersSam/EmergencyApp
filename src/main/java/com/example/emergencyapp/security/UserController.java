@@ -1,4 +1,4 @@
-package com.example.emergencyapp.emergencycall.security;
+package com.example.emergencyapp.security;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.http.MediaType;

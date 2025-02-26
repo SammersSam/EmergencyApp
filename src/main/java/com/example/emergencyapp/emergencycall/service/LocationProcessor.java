@@ -6,6 +6,13 @@ import java.util.List;
 
 public class LocationProcessor {
 
+    /**
+     * Finds the EmergencyResource closest to a given location.
+     *
+     * @param emergencyLocation  a string representing the location (e.g., "52.2297,21.0122")
+     * @param resources a list of resources to search
+     * @return the EmergencyResource nearest to the location
+     */
     public static EmergencyResource findClosestResource(String emergencyLocation, List<EmergencyResource> resources) {
         double[] emergencyCoords = parseLocation(emergencyLocation);
         EmergencyResource closest = null;
@@ -23,7 +30,13 @@ public class LocationProcessor {
         return (closest);
     }
 
-
+    /**
+     * Parses a string representing a location (e.g., "52.2297,21.0122")
+     * into a double array where [0] is latitude and [1] is longitude.
+     *
+     * @param location the string to parse
+     * @return a double array [lat, lon]
+     */
     private static double[] parseLocation(String location) {
         String[] parts = location.split(",");
         double lat = Double.parseDouble(parts[0].trim());
@@ -31,7 +44,16 @@ public class LocationProcessor {
         return new double[]{lat, lon};
     }
 
-
+    /**
+     * Calculates the distance in kilometers between two coordinates,
+     * possibly using the Haversine formula.
+     *
+     * @param lat1 latitude of the first point
+     * @param lon1 longitude of the first point
+     * @param lat2 latitude of the second point
+     * @param lon2 longitude of the second point
+     * @return the distance in kilometers between the two points
+     */
     private static  double calculateDistance(double lat1, double lon1, double lat2, double lon2) {
         final int R = 6371;
         double latDistance = Math.toRadians(lat2 - lat1);
